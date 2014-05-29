@@ -2,7 +2,19 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-var CookieHelper = {
+if (!chrome.cookies) {
+  chrome.cookies = chrome.experimental.cookies;
+}
+
+// function getCookies(domain, name, callback) {
+    // chrome.cookies.get({"url": domain, "name": name}, function(cookie) {
+        // if(callback) {
+            // callback(cookie.value);
+        // }
+    // });
+// }
+
+function CookieHelper() {
 	this.pinnedCookies = {};
 	
 	this.reset = function() {
@@ -10,11 +22,33 @@ var CookieHelper = {
 	}
 	
 	this.persistCookie = function() {
-		alert('Bingo');
+		//alert('Bingo');
 		var div = document.createElement('div');
-		div.innerHTML = 'Test';
+		div.innerHTML = 'test';//chrome.cookies[0].name;
 		
 		document.body.appendChild(div);
+		
+		// chrome.cookies.get({url:"www.kitbag.com", name:"persist"}, function(cookies){
+			// //console.log(cookies);
+			// alert(cookies);
+		// });
+		
+		/*
+		getCookies("http://www.kitbag.com", "persist", function(id) {
+			alert(id);
+		});
+		*/
+		
+		chrome.cookies.getAll({}, function(cookies) {
+			//startListening();
+			//start = new Date();
+    for (var i in cookies) {
+      //cache.add(cookies[i]);
+	  alert(cookies[i].value);
+    }
+    //timer.reset();
+    //reloadCookieTable();
+  });
 	}
 	
 	/*
@@ -49,6 +83,8 @@ document.addEventListener('DOMContentLoaded', function () {
   
   //alert('test');
   
-  CookieHelper.persistCookie();
+  var cookieHelper = new CookieHelper();
+  
+  cookieHelper.persistCookie();
   
 });
