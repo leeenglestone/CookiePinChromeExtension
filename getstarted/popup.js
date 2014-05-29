@@ -6,13 +6,13 @@ if (!chrome.cookies) {
   chrome.cookies = chrome.experimental.cookies;
 }
 
-// function getCookies(domain, name, callback) {
-    // chrome.cookies.get({"url": domain, "name": name}, function(cookie) {
-        // if(callback) {
-            // callback(cookie.value);
-        // }
-    // });
-// }
+function getCookies(domain, name, callback) {
+     chrome.cookies.get({"url": domain, "name": name}, function(cookie) {
+         if(callback) {
+             callback(cookie.value);
+         }
+     });
+ }
 
 function CookieHelper() {
 	this.pinnedCookies = {};
@@ -23,32 +23,34 @@ function CookieHelper() {
 	
 	this.persistCookie = function() {
 		//alert('Bingo');
-		var div = document.createElement('div');
-		div.innerHTML = 'test';//chrome.cookies[0].name;
 		
-		document.body.appendChild(div);
+		
+		
 		
 		// chrome.cookies.get({url:"www.kitbag.com", name:"persist"}, function(cookies){
 			// //console.log(cookies);
 			// alert(cookies);
 		// });
 		
-		/*
-		getCookies("http://www.kitbag.com", "persist", function(id) {
-			alert(id);
-		});
-		*/
 		
-		chrome.cookies.getAll({}, function(cookies) {
-			//startListening();
-			//start = new Date();
-    for (var i in cookies) {
-      //cache.add(cookies[i]);
-	  alert(cookies[i].value);
-    }
-    //timer.reset();
-    //reloadCookieTable();
-  });
+		getCookies("http://www.kitbag.com", "persist", function(id) {
+			//alert(id);
+			var div = document.createElement('div');
+			div.innerHTML = id;//chrome.cookies[0].name;
+			document.body.appendChild(div);
+		});
+		
+		
+		// chrome.cookies.getAll({}, function(cookies) {
+			// //startListening();
+			// //start = new Date();
+    // for (var i in cookies) {
+      // //cache.add(cookies[i]);
+	  // alert(cookies[i].value);
+    // }
+    // //timer.reset();
+    // //reloadCookieTable();
+  // });
 	}
 	
 	/*
