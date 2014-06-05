@@ -1,11 +1,16 @@
-<!doctype html>
 <html>
   <head>
-    <title>Getting Started Extension's Popup</title>
+    <title>Cookies Extension</title>
     <style>
+	
+	body, table { font-size:1em; }
+	
       body {
+		
         min-width: 357px;
         overflow-x: hidden;
+		font-family:arial;
+		font-size:0.8em;
       }
 
       img {
@@ -15,6 +20,12 @@
         width: 75px;
         height: 75px;
       }
+	  
+	  .title { font-weight:bold; margin-bottom:10px; } 
+	  
+	  table#tblCookies { border-collapse:collapse; width:100%; }
+	  table#tblCookies td { border:1px solid #ccc; padding:3px; }
+	  
     </style>
 
     <!--
@@ -23,9 +34,12 @@
       -
       - [1]: http://developer.chrome.com/extensions/contentSecurityPolicy.html
      -->
-    <script src="popup.js"></script>
+     <script src="popup.js"></script>
   </head>
   <body>
+	<div class="title">Cookies</div>
+	<table id="tblCookies">
+	</table>
   </body>
 </html>
 
